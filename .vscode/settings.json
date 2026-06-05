@@ -1,0 +1,11 @@
+{
+  // Discover Copilot agents and prompts from every flow folder.
+  // Each flow lives in flows/<flow-name>/ with its own agents/ and prompts/.
+  // The glob patterns below auto-discover any new flow you add — no edits needed.
+  "chat.agentFilesLocations": {
+    "flows/**/agents": true
+  },
+  "chat.promptFilesLocations": {
+    "flows/**/prompts": true
+  }
+}
