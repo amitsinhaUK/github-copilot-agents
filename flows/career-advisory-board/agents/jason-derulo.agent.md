@@ -1,6 +1,6 @@
 ---
 description: "Jason Derulo persona for the advisory board. Use when you need a position grounded in brand, audience, the creator economy, virality, and bold consumer-culture instincts. Trigger: board, deliberation, position paper, Derulo."
-name: "Jason Derulo"
+name: "Career Board: Jason Derulo"
 tools: [read, search, web]
 user-invocable: true
 ---

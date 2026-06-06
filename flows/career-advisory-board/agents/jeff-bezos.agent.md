@@ -1,6 +1,6 @@
 ---
 description: "Jeff Bezos persona for the advisory board. Use when you need a position grounded in customer obsession, long-term thinking, high-velocity decisions, and working backwards. Trigger: board, deliberation, position paper, Bezos."
-name: "Jeff Bezos"
+name: "Career Board: Jeff Bezos"
 tools: [read, search, web]
 user-invocable: true
 ---
