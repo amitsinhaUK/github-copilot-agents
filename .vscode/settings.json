@@ -1,11 +1,15 @@
 {
-  // Discover Copilot agents and prompts from every flow folder.
-  // Each flow lives in flows/<flow-name>/ with its own agents/ and prompts/.
-  // The glob patterns below auto-discover any new flow you add — no edits needed.
+  // Discover Copilot agents and prompts per flow.
+  // NOTE: these settings do NOT support glob keys (VS Code rejects keys containing
+  // * ? [ ] { }) and do NOT scan subfolders recursively for agent/prompt files.
+  // List each flow's agents/ and prompts/ folder explicitly with a literal path.
+  // When you add a new flow under flows/, add its two entries below.
   "chat.agentFilesLocations": {
-    "flows/**/agents": true
+    "flows/career-advisory-board/agents": true,
+    "flows/college-admissions-advisor/agents": true
   },
   "chat.promptFilesLocations": {
-    "flows/**/prompts": true
+    "flows/career-advisory-board/prompts": true,
+    "flows/college-admissions-advisor/prompts": true
   }
 }

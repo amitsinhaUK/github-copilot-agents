@@ -7,7 +7,7 @@ A collection of custom GitHub Copilot **flows** for VS Code. Each flow is a self
 ```
 github-copilot-agents/
 ├─ .vscode/
-│  └─ settings.json          # registers flows/**/agents and flows/**/prompts
+│  └─ settings.json          # registers each flow's agents/ and prompts/ folder (literal paths)
 └─ flows/
    └─ career-advisory-board/ # one folder per flow
       ├─ agents/             # *.agent.md (the personas / subagents)
@@ -19,23 +19,34 @@ Each **flow** = one folder under `flows/`. Inside, `agents/` holds any number of
 
 ## How discovery works
 
-`.vscode/settings.json` registers the flow folders with **glob patterns**:
+`.vscode/settings.json` registers each flow's folders with **literal paths**:
 
 ```jsonc
 {
-  "chat.agentFilesLocations":  { "flows/**/agents":  true },
-  "chat.promptFilesLocations": { "flows/**/prompts": true }
+  "chat.agentFilesLocations": {
+    "flows/career-advisory-board/agents": true,
+    "flows/college-admissions-advisor/agents": true
+  },
+  "chat.promptFilesLocations": {
+    "flows/career-advisory-board/prompts": true,
+    "flows/college-admissions-advisor/prompts": true
+  }
 }
 ```
 
-Because these are globs, **every flow you add under `flows/` is discovered automatically** — no settings changes needed.
+> **Important:** these two settings do **not** support glob keys. VS Code rejects any key
+> containing `*`, `?`, `[`, `]`, `{`, or `}` (silently — no error), so `flows/**/agents`
+> never loads. They also **do not** scan subfolders recursively for `*.agent.md` /
+> `*.prompt.md`, so you can't point at a parent folder either. Each flow's `agents/` and
+> `prompts/` folder must be listed explicitly.
 
 ## Adding a new flow
 
 1. Create `flows/<your-flow>/agents/` and `flows/<your-flow>/prompts/`.
 2. Add one or more `*.agent.md` files in `agents/`.
 3. Add a `*.prompt.md` in `prompts/` — its filename becomes the slash command (e.g. `my-flow.prompt.md` → `/my-flow`).
-4. Reload VS Code (**Developer: Reload Window**). Done.
+4. **Register the new folders** by adding `flows/<your-flow>/agents` and `flows/<your-flow>/prompts` to the two settings blocks in `.vscode/settings.json`.
+5. Reload VS Code (**Developer: Reload Window**). Done.
 
 ## Flows
 
@@ -47,11 +58,17 @@ Because these are globs, **every flow you add under `flows/` is discovered autom
 
 ## Using these in other workspaces
 
-The `.vscode/settings.json` here works when this repo is your open workspace. To use the flows from any workspace, add the same keys to your **User Settings (JSON)** with absolute paths, e.g.:
+The `.vscode/settings.json` here works when this repo is your open workspace. To use the flows from any workspace, add the same keys to your **User Settings (JSON)** with absolute, per-flow paths (no globs), e.g.:
 
 ```jsonc
 {
-  "chat.agentFilesLocations":  { "/Users/amit_sinha/development/github-copilot-agents/flows/**/agents":  true },
-  "chat.promptFilesLocations": { "/Users/amit_sinha/development/github-copilot-agents/flows/**/prompts": true }
+  "chat.agentFilesLocations": {
+    "/Users/amit_sinha/development/github-copilot-agents/flows/career-advisory-board/agents": true,
+    "/Users/amit_sinha/development/github-copilot-agents/flows/college-admissions-advisor/agents": true
+  },
+  "chat.promptFilesLocations": {
+    "/Users/amit_sinha/development/github-copilot-agents/flows/career-advisory-board/prompts": true,
+    "/Users/amit_sinha/development/github-copilot-agents/flows/college-admissions-advisor/prompts": true
+  }
 }
 ```
