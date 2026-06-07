@@ -53,6 +53,7 @@ Each **flow** = one folder under `flows/`. Inside, `agents/` holds any number of
 | Flow | Command | What it does |
 |------|---------|--------------|
 | [career-advisory-board](flows/career-advisory-board/) | `/career-advisory-board` | A board of leader personas deliberate a problem and return a consensus position |
+| [college-admissions-advisor](flows/college-admissions-advisor/) | `/college-admissions-advisor` | An agent with subagents acting as a college advisor for university in the US |
 
 > Persona agents are simulations of public figures for deliberation purposes, not the real individuals.
 
@@ -63,12 +64,12 @@ The `.vscode/settings.json` here works when this repo is your open workspace. To
 ```jsonc
 {
   "chat.agentFilesLocations": {
-    "/Users/amit_sinha/development/github-copilot-agents/flows/career-advisory-board/agents": true,
-    "/Users/amit_sinha/development/github-copilot-agents/flows/college-admissions-advisor/agents": true
+    "/<path to folder>/github-copilot-agents/flows/career-advisory-board/agents": true,
+    "/<path to folder>/github-copilot-agents/flows/college-admissions-advisor/agents": true
   },
   "chat.promptFilesLocations": {
-    "/Users/amit_sinha/development/github-copilot-agents/flows/career-advisory-board/prompts": true,
-    "/Users/amit_sinha/development/github-copilot-agents/flows/college-admissions-advisor/prompts": true
+    "/<path to folder>/github-copilot-agents/flows/career-advisory-board/prompts": true,
+    "/<path to folder>/github-copilot-agents/flows/college-admissions-advisor/prompts": true
   }
 }
 ```
